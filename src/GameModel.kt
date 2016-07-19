@@ -8,5 +8,11 @@ class GameModel {
     fun resetGame() {
         wastePile.clear()
         foundationPiles.forEach { it.reset() }
+        deck.reset()
+
+        tableauPiles.forEachIndexed { i, tableauPile ->
+            val cardsInPile: MutableList<Card> = Array(i + 1, { deck.drawCard() }).toMutableList()
+            tableauPiles[i] = TableauPile(cardsInPile)
+        }
     }
 }
