@@ -1,7 +1,8 @@
-class TableauPile(var cards: MutableList<Card>) {
+class TableauPile(var cards: MutableList<Card> = mutableListOf()) {
 
     init {
-        cards.last().faceUp = true
+        if (cards.size > 0)
+            cards.last().faceUp = true
     }
 
     fun addCards(newCards: MutableList<Card>): Boolean {
@@ -16,6 +17,15 @@ class TableauPile(var cards: MutableList<Card>) {
             return true
         }
         return false
+    }
+
+    fun removeCards(tappedIndex: Int) {
+        for (i in tappedIndex..cards.lastIndex) {
+            cards.removeAt(i)
+        }
+        if (cards.size > 0) {
+            cards.last().faceUp = true
+        }
     }
 
     private fun suitCheck(c1: Card, c2: Card): Boolean {
