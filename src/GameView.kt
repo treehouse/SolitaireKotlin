@@ -1,3 +1,3 @@
 interface GameView {
-    fun update(gameModel: GameModel)
+    fun update(gameModel: GameModel = GameModel)
 }
